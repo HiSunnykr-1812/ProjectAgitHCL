@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import PageObject.verificationdetails;
@@ -23,7 +24,7 @@ public class Demopra {
 	WebDriver driver;
 	xpath detailpage;
 	verificationdetails submitpageverification;
-	String fname = "Ashutosh";
+	String fname="Ashutosh";
 	String lname = "Ranjan";
 	String emailid = "Ashutosh@Test.com";
 	Testcontextsetup Testcontext;
@@ -36,8 +37,12 @@ public class Demopra {
 		detailpage = Testcontext.pomanager.getxpath();
 		submitpageverification = Testcontext.pomanager.getverify();
 	}
+	
 
-	@Test
+		
+
+
+	@Test()
 	public void formdetails() {
 
 		detailpage.enterfirstname(fname);
@@ -51,7 +56,7 @@ public class Demopra {
 		detailpage.hobbiesselection("Reading");
 		detailpage.currentaddress("Bangalore Karnataka");
 		detailpage.stateselection("Uttar Pradesh", "Agra");
-		detailpage.submitbutton();
+		
 
 	}
 
