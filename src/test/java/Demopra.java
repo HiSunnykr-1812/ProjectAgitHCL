@@ -31,7 +31,6 @@ public class Demopra {
 	@BeforeTest
 	public void launchBrowser() throws IOException {
 
-		
 		Testcontext = new Testcontextsetup();
 		driver = Testcontext.baseclass.WebDriverManager();
 		detailpage = Testcontext.pomanager.getxpath();
@@ -71,10 +70,11 @@ public class Demopra {
 			WebElement valueElement = driver.findElement(By.xpath(xpath));
 			String actualValue = valueElement.getText().trim();
 
-			// TestNG assertion to verify expected vs actual
 			Assert.assertEquals(actualValue, expectedValue, "Mismatch found for: " + label);
 
 		}
+		
+		System.out.println("Page Title:" + driver.getTitle());
 
 		detailpage.close();
 	}
@@ -84,4 +84,6 @@ public class Demopra {
 		driver.quit();
 
 	}
+	
+	
 }
