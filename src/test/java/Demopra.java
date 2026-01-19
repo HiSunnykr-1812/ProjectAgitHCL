@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,8 @@ import org.testng.annotations.Test;
 
 import PageObject.verificationdetails;
 import PageObject.xpath;
+import utils.Testcontextsetup;
+import utils.baseclass;
 
 public class Demopra {
 
@@ -23,17 +26,16 @@ public class Demopra {
 	String fname = "Ashutosh";
 	String lname = "Ranjan";
 	String emailid = "Ashutosh@Test.com";
+	Testcontextsetup Testcontext;
 
 	@BeforeTest
-	public void launchBrowser() {
+	public void launchBrowser() throws IOException {
 
-		driver = new ChromeDriver();
-		driver.get("https://demoqa.com/automation-practice-form");
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		detailpage = new xpath(driver);
-		submitpageverification = new verificationdetails(driver);
-
+		
+		Testcontext = new Testcontextsetup();
+		driver = Testcontext.baseclass.WebDriverManager();
+		detailpage = Testcontext.pomanager.getxpath();
+		submitpageverification = Testcontext.pomanager.getverify();
 	}
 
 	@Test
@@ -73,14 +75,13 @@ public class Demopra {
 			Assert.assertEquals(actualValue, expectedValue, "Mismatch found for: " + label);
 
 		}
-		
+
 		detailpage.close();
 	}
-	
-	
+
 	@Test(dependsOnMethods = "verification")
 	public void quitbrowswer() {
 		driver.quit();
-		
+
 	}
 }
